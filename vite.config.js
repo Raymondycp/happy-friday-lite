@@ -42,12 +42,16 @@ export default defineConfig(() => ({
 
   clearScreen: false,
   server: {
-    port: 5173,
+    port: 5174,
     strictPort: true,
+    // app-data 为 Electron 运行时数据目录，文件被占用时监听会抛 EBUSY 导致 Vite 崩溃
+    watch: {
+      ignored: ["**/app-data/**", "**/release/**"],
+    },
     hmr: {
       protocol: "ws",
       host: "localhost",
-      port: 5173,
+      port: 5174,
     },
   },
   base: "./",
